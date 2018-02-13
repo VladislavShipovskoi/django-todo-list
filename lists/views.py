@@ -1,15 +1,51 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.utils import timezone
-from django.shortcuts import render, get_object_or_404
 from .models import Todo
 from .forms import TodoForm
+from django.views.generic.edit import FormView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+from django.http import HttpResponseRedirect
+from django.views.generic.base import View
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
+class RegisterFormView(FormView):
+    form_class = UserCreationForm
+    success_url = "/login/"
+    template_name = "todolist/register.html"
+
+    def form_valid(self, form):
+        form.save()
+        return super(RegisterFormView, self).form_valid(form)
+
+
+class LoginFormView(FormView):
+    form_class = AuthenticationForm
+    template_name = "todolist/login.html"
+    success_url = "/"
+
+    def form_valid(self, form):
+        self.user = form.get_user()
+        login(self.request, self.user)
+        return super(LoginFormView, self).form_valid(form)
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect("/")
+
+
+@login_required
 def todo_detail(request, pk):
     todos = get_object_or_404(Todo, pk=pk)
     return render(request, 'todolist/todo_detail.html', {'todos': todos})
 
 
+@login_required
 def todo_new(request):
     if request.method == "POST":
         form = TodoForm(request.POST)
@@ -18,12 +54,20 @@ def todo_new(request):
             todo.author = request.user
             todo.created_date = timezone.now()
             todo.save()
-            return redirect('todo_detail', pk=todo.pk)
+            return redirect('todo_list')
     else:
         form = TodoForm()
     return render(request, 'todolist/todo_edit.html', {'form': form})
 
 
+@login_required
+def todo_delete(request, pk):
+    todo = get_object_or_404(Todo, pk=pk)
+    todo.delete()
+    return redirect('todo_list')
+
+
+@login_required
 def todo_edit(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
     if request.method == "POST":
@@ -33,16 +77,13 @@ def todo_edit(request, pk):
             todo.author = request.user
             todo.created_date = timezone.now()
             todo.save()
-            return redirect('post_detail', pk=todo.pk)
+            return redirect('todo_list')
     else:
         form = TodoForm(instance=todo)
     return render(request, 'todolist/todo_edit.html', {'form': form})
 
 
-def index(request):
-    return render(request, 'todolist/base.html')
-
-
+@login_required
 def todo_list(request):
-    todos = Todo.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+    todos = Todo.objects.filter(created_date__lte=timezone.now(),author=request.user).order_by('created_date')
     return render(request, 'todolist/todo_list.html', {'todos': todos})

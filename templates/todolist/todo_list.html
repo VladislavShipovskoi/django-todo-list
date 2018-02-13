@@ -1,12 +1,15 @@
 {% extends 'todolist/base.html' %}
-{% block content %}
-    {% for todo in todos %}
-        <div class="post">
-            <div class="date">
-                <p>Создано: {{ todo.created_date }}</p>
+
+    {% block content %}
+        {% for todo in todos %}
+            <div class="col-md-4">
+                <div class="date">
+                    <p>Created: {{ todo.created_date }}</p>
+                </div>
+                <h2><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></h2>
+                <p>{{ todo.text|linebreaksbr }}</p>
+                <p><a class="btn btn-primary" href="{% url 'todo_edit' pk=todo.pk %}" role="button">Изменить &raquo;</a></p>
+                <p><a class="btn btn-primary" href="{% url 'todo_delete' pk=todo.pk %}" role="button">Удалить &raquo;</a></p>
             </div>
-            <h1><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></h1>
-            <p>{{ todo.text|linebreaksbr }}</p>
-        </div>
-    {% endfor %}
-{% endblock %}
+        {% endfor %}
+    {% endblock %}

@@ -4,29 +4,52 @@
 <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Vladislav shipovskoi">
         <title>ToDo List</title>
+        <link rel="icon" href="{% static 'todolist.ico' %}" type="text/css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/todolist.css' %}">
     </head>
 
     <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Todo list</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'todo_new' %}">add todo</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if request.user.is_authenticated %}
+                        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                    {% endif %}
+                    {% if request.user.is_anonymous %}
+                        <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
 
-        <div class="page-header">
-            <h1><a href="/">ToDo List</a></h1>
-            <a href="{% url 'todo_new' %}" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-plus"></span> Plus </a>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
+        <main role="main">
+
+            <div class="container">
+                <div class="row">
+                    {% block content %}
+                    {% endblock %}
                 </div>
             </div>
-        </div>
+
+        </main>
+
+        <footer>
+            <a href="https://github.com/VladislavShipovskoi">&copy; Vladislav Shipovskoi 2018</a>
+        </footer>
 
     </body>
+
 </html>

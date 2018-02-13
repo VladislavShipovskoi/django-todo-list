@@ -7,7 +7,6 @@
                 {{ todos.created_date }}
             </div>
         {% endif %}
-        <a class="btn btn-default" href="{% url 'todo_edit' pk=todos.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         <h1>{{ todos.title }}</h1>
         <p>{{ todos.text|linebreaksbr }}</p>
     </div>
