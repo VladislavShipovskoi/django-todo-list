@@ -8,8 +8,8 @@
                 </div>
                 <h2><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></h2>
                 <p>{{ todo.text|linebreaksbr }}</p>
-                <p><a class="btn btn-primary" href="{% url 'todo_edit' pk=todo.pk %}" role="button">Изменить &raquo;</a></p>
-                <p><a class="btn btn-primary" href="{% url 'todo_delete' pk=todo.pk %}" role="button">Удалить &raquo;</a></p>
+                <p><a class="btn btn-primary" href="{% url 'todo_edit' pk=todo.pk %}" role="button"> Edit </a></p>
+                <p><a class="btn btn-primary" href="{% url 'todo_delete' pk=todo.pk %}" role="button"> Delete </a></p>
             </div>
         {% endfor %}
     {% endblock %}

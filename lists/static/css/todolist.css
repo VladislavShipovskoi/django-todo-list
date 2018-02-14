@@ -10,3 +10,17 @@ footer {
     height: 40px;
     width: 100%;
 }
+
+.col-md-4{
+    text-align:center;
+    padding:10px;
+    border: 1px solid;
+}
+
+.center_signin{
+    width: 30%;
+}
+
+.btn-primary{
+    margin-top: 10px;
+}

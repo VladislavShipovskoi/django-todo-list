@@ -21,16 +21,13 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">Todo list</a>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'todo_new' %}">add todo</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    {% if request.user.is_authenticated %}
-                        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                    {% endif %}
-                    {% if request.user.is_anonymous %}
-                        <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    {% endif %}
+                {% if request.user.is_authenticated %}
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'todo_new' %}">add todo</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                {% endif %}
                 </ul>
             </div>
         </nav>
