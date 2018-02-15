@@ -22,9 +22,11 @@
                     <a class="navbar-brand" href="/">Todo list</a>
                 </div>
                 {% if request.user.is_authenticated %}
+
                     <ul class="nav navbar-nav">
-                        <li><a href="{% url 'todo_new' %}">add todo</a></li>
+                        <li><a href="{% url 'todo_completed' %}"> completed</a></li>
                     </ul>
+
                     <ul class="nav navbar-nav navbar-right">
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                 {% endif %}
@@ -46,7 +48,6 @@
         <footer>
             <a href="https://github.com/VladislavShipovskoi">&copy; Vladislav Shipovskoi 2018</a>
         </footer>
-
     </body>
 
 </html>

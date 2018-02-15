@@ -75,6 +75,7 @@ def todo_edit(request, pk):
         if form.is_valid():
             todo = form.save(commit=False)
             todo.author = request.user
+            todo.success = 'success' in request.POST
             todo.created_date = timezone.now()
             todo.save()
             return redirect('todo_list')
@@ -85,5 +86,12 @@ def todo_edit(request, pk):
 
 @login_required
 def todo_list(request):
-    todos = Todo.objects.filter(created_date__lte=timezone.now(),author=request.user).order_by('created_date')
+    todos = Todo.objects.filter(author=request.user,success=False).order_by('created_date')
+    return render(request, 'todolist/todo_list.html', {'todos': todos})
+
+
+@login_required
+def todo_completed(request):
+    todos = Todo.objects.filter(author=request.user,success=True).order_by('created_date')
+    print(todos.values())
     return render(request, 'todolist/todo_list.html', {'todos': todos})

@@ -4,6 +4,8 @@ from .models import Todo
 
 class TodoForm(forms.ModelForm):
 
+    success = forms.BooleanField(required=False)
+
     class Meta:
         model = Todo
-        fields = ('title', 'text',)
+        fields = ('text','priority')
