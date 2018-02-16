@@ -16,6 +16,8 @@ class Todo(models.Model):
     priority = models.CharField(choices=PRIORITY,default='2',max_length=6)
     created_date = models.DateTimeField(
         default=timezone.now)
+    completed_date = models.DateTimeField(
+        default=timezone.now)
 
     def publish(self):
         self.created_date = timezone.now()
