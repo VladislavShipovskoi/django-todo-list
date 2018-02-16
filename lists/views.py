@@ -93,5 +93,4 @@ def todo_list(request):
 @login_required
 def todo_completed(request):
     todos = Todo.objects.filter(author=request.user,success=True).order_by('created_date')
-    print(todos.values())
-    return render(request, 'todolist/todo_list.html', {'todos': todos})
+    return render(request, 'todolist/todo_completed.html', {'todos': todos})
