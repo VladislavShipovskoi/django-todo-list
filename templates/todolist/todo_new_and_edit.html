@@ -1,0 +1,12 @@
+{% extends 'todolist/base.html' %}
+{% load bootstrap_tags %}
+
+{% block content %}
+    <div class="new_and_edit_form">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{ form|as_bootstrap }}
+            <button type="submit" class="save btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}

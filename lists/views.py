@@ -40,12 +40,6 @@ class LogoutView(View):
 
 
 @login_required
-def todo_detail(request, pk):
-    todos = get_object_or_404(Todo, pk=pk)
-    return render(request, 'todolist/todo_detail.html', {'todos': todos})
-
-
-@login_required
 def todo_new(request):
     if request.method == "POST":
         form = TodoForm(request.POST)
@@ -57,7 +51,7 @@ def todo_new(request):
             return redirect('todo_list')
     else:
         form = TodoForm()
-    return render(request, 'todolist/todo_edit.html', {'form': form})
+    return render(request, 'todolist/todo_new_and_edit.html', {'form': form})
 
 
 @login_required
@@ -81,7 +75,7 @@ def todo_edit(request, pk):
             return redirect('todo_list')
     else:
         form = TodoForm(instance=todo)
-    return render(request, 'todolist/todo_edit.html', {'form': form})
+    return render(request, 'todolist/todo_new_and_edit.html', {'form': form})
 
 
 @login_required

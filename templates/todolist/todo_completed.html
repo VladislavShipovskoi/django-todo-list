@@ -14,7 +14,6 @@
                         <th>priority</th>
                         <th></th>
                         <th></th>
-                        <th>success</th>
                     </tr>
                 </thead>
 
@@ -33,10 +32,7 @@
                         {% ifequal todo.get_priority_display 'High' %}
                             <td><span class="label label-danger">High</span></td>
                         {% endifequal %}
-
                         <td><a class="btn mini blue-stripe" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
-                        <td><a class="btn mini blue-stripe" href="{% url 'todo_delete' pk=todo.pk %}">Delete</a></td>
-                        <td><input class="form-check-input" type="checkbox" value="{{ todo.success }}"></td>
                     </tr>
                     {% endfor %}
 
