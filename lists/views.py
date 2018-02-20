@@ -80,11 +80,11 @@ def todo_edit(request, pk):
 
 @login_required
 def todo_list(request):
-    todos = Todo.objects.filter(author=request.user,success=False).order_by('created_date')
+    todos = Todo.objects.filter(author=request.user,success=False).order_by('-priority')
     return render(request, 'todolist/todo_list.html', {'todos': todos})
 
 
 @login_required
 def todo_completed(request):
-    todos = Todo.objects.filter(author=request.user,success=True).order_by('created_date')
+    todos = Todo.objects.filter(author=request.user,success=True).order_by('completed_date')
     return render(request, 'todolist/todo_completed.html', {'todos': todos})
