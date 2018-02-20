@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url,include
 from . import views
 
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^todo/(?P<pk>\d+)/delete/$', views.todo_delete, name='todo_delete'),
     url(r'^register/$', views.RegisterFormView.as_view()),
     url(r'^login/$', views.LoginFormView.as_view()),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^logout/$', views.LogoutView.as_view()),
 ]
