@@ -1,9 +1,15 @@
+#todo_nav{
+    background-color: #F8F8F8;
+    border-top: 1px solid #E7E7E7;
+}
+
 h1{
     text-align: center;
     margin-top: 40px;
 }
 
 #sign-in-container{
+    margin-top: 10%;
     width: 40%;
 }
 
@@ -17,11 +23,13 @@ h1{
     margin-top: 2%;
 }
 
-#todo-table{
+#todo-table,
+#completed-todo-table{
     margin-top: 3%;
 }
 
-#todo-table td, th
+#todo-table td, th,
+#completed-todo-table td,th
 {
     text-align:center;
     vertical-align:middle;
@@ -38,8 +46,9 @@ h1{
 
 
 #new-and-edit-form{
-    margin-left: 20%;
-    margin-right: 20%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 #save-button{
