@@ -3,7 +3,7 @@
     {% block content %}
 
 
-        <table class="table table-striped table-hover table-users">
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
             <th>text</th>
@@ -15,26 +15,32 @@
 
         </thead>
         <tbody>
+
+        {% if not todos %}
+            <td colspan="5"> Loafer </td>
+        {% endif %}
+
         {% for todo in todos %}
         <tr>
+
             <td class="hidden-phone">  {{ todo.text|linebreaksbr }}  </td>
             <td>  {{ todo.created_date }}  </td>
             {% ifequal todo.get_priority_display 'Low' %}
-                <td><span class="label label-default">Low</span></td>
+                <td><span class="badge badge-default">Low</span></td>
             {% endifequal %}
             {% ifequal todo.get_priority_display 'Normal' %}
-                <td><span class="label label-success">Normal</span></td>
+                <td><span class="badge badge-success">Normal</span></td>
             {% endifequal %}
             {% ifequal todo.get_priority_display 'High' %}
-                <td><span class="label label-danger">High</span></td>
+                <td><span class="badge badge-danger">High</span></td>
             {% endifequal %}
-            <td><a class="btn mini blue-stripe" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
-            <td><a class="btn mini blue-stripe" href="{% url 'todo_delete' pk=todo.pk %}">Delete</a></td>
+            <td><a class="btn btn-primary" id="edit_button" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
+            <td><a class="btn btn-danger" id="delete_button" href="{% url 'todo_delete' pk=todo.pk %}">Delete</a></td>
         </tr>
 
         {% endfor %}
 
         </tbody>
     </table>
-        <td><a class="btn mini blue-stripe" href="{% url 'todo_new' %}">Add</a></td>
+        <td><a class="btn btn-success" href="{% url 'todo_new' %}">Add</a></td>
     {% endblock %}

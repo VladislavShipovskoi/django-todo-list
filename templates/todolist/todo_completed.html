@@ -13,7 +13,6 @@
                         <th>completed</th>
                         <th>priority</th>
                         <th></th>
-                        <th></th>
                     </tr>
                 </thead>
 
@@ -24,15 +23,15 @@
                         <td>  {{ todo.created_date }}  </td>
                         <td>  {{ todo.completed_date }}  </td>
                         {% ifequal todo.get_priority_display 'Low' %}
-                            <td><span class="label label-default">Low</span></td>
+                            <td><span class="badge badge-default">Low</span></td>
                         {% endifequal %}
                         {% ifequal todo.get_priority_display 'Normal' %}
-                            <td><span class="label label-success">Normal</span></td>
+                            <td><span class="badge badge-success">Normal</span></td>
                         {% endifequal %}
                         {% ifequal todo.get_priority_display 'High' %}
-                            <td><span class="label label-danger">High</span></td>
+                            <td><span class="badge badge-danger">High</span></td>
                         {% endifequal %}
-                        <td><a class="btn mini blue-stripe" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
+                        <td><a class="btn mini blue-stripe" id="edit_complete_button" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
                     </tr>
                     {% endfor %}
 

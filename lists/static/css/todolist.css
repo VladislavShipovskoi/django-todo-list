@@ -11,26 +11,45 @@ footer {
     width: 100%;
 }
 
-.col-md-4{
-    text-align:center;
-    padding:10px;
-    border: 1px solid;
+.center_signin{
+    width: 40%;
 }
 
-.center_signin{
-    width: 30%;
+#save-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.add-button{
+    width: 10%;
 }
 
 .btn-primary{
     width: 100%;
-    margin-top: 10px;
+    margin-top: 2%;
+}
+
+.btn-danger{
+    width: 100%;
+    margin-top: 2%;
 }
 
 h1{
     text-align: center;
+    margin-top: 40px;
 }
 
 .new_and_edit_form{
     margin-left: 20%;
     margin-right: 20%;
+}
+
+.todo_table{
+    margin-top: 3%;
+}
+
+#id_username{
+    margin-bottom: 5px;
 }

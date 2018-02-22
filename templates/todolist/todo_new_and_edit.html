@@ -6,7 +6,7 @@
         <form method="POST" class="post-form">
             {% csrf_token %}
             {{ form|as_bootstrap }}
-            <button type="submit" class="save btn btn-primary">Save</button>
+            <button type="submit" class="save btn btn-primary" id="save-button" >Save</button>
         </form>
     </div>
 {% endblock %}

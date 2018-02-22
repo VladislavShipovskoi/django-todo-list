@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lists.apps.ListsConfig',
     'django_forms_bootstrap',
-    'social_django',
+    'djangobower',
 ]
 
 MIDDLEWARE = [
@@ -136,7 +136,18 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 SOCIAL_AUTH_GITHUB_KEY = ''
 SOCIAL_AUTH_GITHUB_SECRET = ''
 
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'djangobower.finders.BowerFinder',
+)
+BOWER_COMPONENTS_ROOT = '/'+BASE_DIR+'/components/'
+
+BOWER_INSTALLED_APPS = (
+
+)
+
 STATIC_URL = os.path.join(BASE_DIR,'/static/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'lists/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'lists/static/')
 LOGIN_URL='/login'
 LOGIN_REDIRECT_URL='/'

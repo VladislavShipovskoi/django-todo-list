@@ -10,7 +10,7 @@ class Todo(models.Model):
         ('2', 'Normal'),
         ('3', 'High'),
     )
-    text = models.TextField(max_length=50)
+    text = models.TextField(max_length=140)
     author = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     success = models.BooleanField(default=False)
     priority = models.CharField(choices=PRIORITY,default='2',max_length=6)
