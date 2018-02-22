@@ -3,7 +3,7 @@
     {% block content %}
 
 
-        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="todo-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
         <tr>
             <th>text</th>
@@ -17,7 +17,7 @@
         <tbody>
 
         {% if not todos %}
-            <td colspan="5"> Loafer </td>
+            <td colspan="5"> Slacker </td>
         {% endif %}
 
         {% for todo in todos %}
@@ -34,13 +34,13 @@
             {% ifequal todo.get_priority_display 'High' %}
                 <td><span class="badge badge-danger">High</span></td>
             {% endifequal %}
-            <td><a class="btn btn-primary" id="edit_button" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
-            <td><a class="btn btn-danger" id="delete_button" href="{% url 'todo_delete' pk=todo.pk %}">Delete</a></td>
+            <td><a id="edit-button" class="btn btn-primary edit_button" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
+            <td><a id="delete-button" class="btn btn-danger delete_button" href="{% url 'todo_delete' pk=todo.pk %}">Delete</a></td>
         </tr>
 
         {% endfor %}
 
         </tbody>
     </table>
-        <td><a class="btn btn-success" href="{% url 'todo_new' %}">Add</a></td>
+        <td><a id="add-button" class="btn btn-success" href="{% url 'todo_new' %}">Add</a></td>
     {% endblock %}
