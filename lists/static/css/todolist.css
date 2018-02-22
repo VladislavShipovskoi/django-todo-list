@@ -13,6 +13,11 @@ h1{
     width: 40%;
 }
 
+#sign-up-container{
+    margin-top: 1%;
+    width: 50%;
+}
+
 #id_username{
     margin-bottom: 1%;
 }
@@ -46,9 +51,9 @@ h1{
 
 
 #new-and-edit-form{
+    margin-top: 2%;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
 }
 
 #save-button{

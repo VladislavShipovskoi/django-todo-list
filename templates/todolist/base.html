@@ -18,16 +18,12 @@
     </head>
 
     <body>
-
         <nav id="todo_nav" class="navbar sticky-top navbar-light bg-faded">
-
             <a class="navbar-brand" href="/">Todo list</a>
-
             {% if request.user.is_authenticated %}
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'todo_completed' %}" class="nav-link" > completed</a></li>
                 </ul>
-
                 <ul class="navbar-nav ml-auto">
                     <li><a href="/logout" > Logout </a></li>
                 </ul>
@@ -43,18 +39,14 @@
             </div>
         </main>
 
-
-
     <footer>
         <a href="https://github.com/VladislavShipovskoi">&copy; Vladislav Shipovskoi 2018</a>
     </footer>
 
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
-
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
         <script src="{% static 'js/todolist.js' %}"></script>

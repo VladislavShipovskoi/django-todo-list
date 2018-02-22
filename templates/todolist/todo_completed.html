@@ -1,46 +1,40 @@
 {% extends 'todolist/base.html' %}
 
-    {% block content %}
+{% block content %}
+    {% if  todos %}
+        <table id="completed-todo-table" class="table table-striped table-bordered">
 
-        {% if  todos %}
+            <thead>
+            <tr>
+                <th>text</th>
+                <th>created</th>
+                <th>completed</th>
+                <th>priority</th>
+                <th></th>
+            </tr>
+            </thead>
 
-            <table id="completed-todo-table" class="table table-striped table-bordered">
-
-                <thead>
-                    <tr>
-                        <th>text</th>
-                        <th>created</th>
-                        <th>completed</th>
-                        <th>priority</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {% for todo in todos %}
-                    <tr>
-                        <td class="hidden-phone">  {{ todo.text|linebreaksbr }}  </td>
-                        <td>  {{ todo.created_date }}  </td>
-                        <td>  {{ todo.completed_date }}  </td>
-                        {% ifequal todo.get_priority_display 'Low' %}
-                            <td><span class="badge badge-default">Low</span></td>
-                        {% endifequal %}
-                        {% ifequal todo.get_priority_display 'Normal' %}
-                            <td><span class="badge badge-success">Normal</span></td>
-                        {% endifequal %}
-                        {% ifequal todo.get_priority_display 'High' %}
-                            <td><span class="badge badge-danger">High</span></td>
-                        {% endifequal %}
-                        <td><a class="btn mini blue-stripe" id="edit_complete_button" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-
-            </table>
-
-        {% else %}
-            <h1> There is nothing </h1>
-        {% endif %}
-
-    {% endblock %}
+            <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <td class="hidden-phone">  {{ todo.text|linebreaksbr }}  </td>
+                    <td>  {{ todo.created_date }}  </td>
+                    <td>  {{ todo.completed_date }}  </td>
+                    {% ifequal todo.get_priority_display 'Low' %}
+                        <td><span class="badge badge-default">Low</span></td>
+                    {% endifequal %}
+                    {% ifequal todo.get_priority_display 'Normal' %}
+                        <td><span class="badge badge-success">Normal</span></td>
+                    {% endifequal %}
+                    {% ifequal todo.get_priority_display 'High' %}
+                        <td><span class="badge badge-danger">High</span></td>
+                    {% endifequal %}
+                    <td><a class="btn mini blue-stripe" id="edit_complete_button" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h1> There is nothing </h1>
+    {% endif %}
+{% endblock %}

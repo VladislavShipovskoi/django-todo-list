@@ -1,9 +1,12 @@
 {% extends 'todolist/base.html' %}
+{% load bootstrap_tags %}
 
-    {% block content %}
+{% block content %}
+    <div id="sign-up-container" class="container center_signin">
         <form action="" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Sign Up</button>
+            {{ form|as_bootstrap }}
+            <button id="sign-up-button" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
         </form>
-    {% endblock %}
+    </div>
+{% endblock %}

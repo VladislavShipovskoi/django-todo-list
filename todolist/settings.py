@@ -148,7 +148,7 @@ BOWER_INSTALLED_APPS = (
 
 )
 
-STATIC_URL = os.path.join(BASE_DIR,'/static/')
+STATIC_URL = os.path.join(BASE_DIR,'lists/static/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'lists/static/')
 LOGIN_URL='/login'
 LOGIN_REDIRECT_URL='/'
