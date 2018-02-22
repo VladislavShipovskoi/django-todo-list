@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'lists.apps.ListsConfig',
     'django_forms_bootstrap',
     'djangobower',
+    'social_django'
 ]
 
 MIDDLEWARE = [
