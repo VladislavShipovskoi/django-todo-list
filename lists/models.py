@@ -11,13 +11,23 @@ class Todo(models.Model):
         ('3', 'High'),
     )
     text = models.TextField(max_length=140)
-    author = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        User,
+        null=True,
+        on_delete=models.CASCADE
+    )
     success = models.BooleanField(default=False)
-    priority = models.CharField(choices=PRIORITY,default='2',max_length=6)
+    priority = models.CharField(
+        choices=PRIORITY,
+        default='2',
+        max_length=6
+    )
     created_date = models.DateTimeField(
-        default=timezone.now)
+        default=timezone.now
+    )
     completed_date = models.DateTimeField(
-        default=timezone.now)
+        default=timezone.now
+    )
 
     def publish(self):
         self.created_date = timezone.now()

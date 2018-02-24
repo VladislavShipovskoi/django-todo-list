@@ -58,8 +58,7 @@ ROOT_URLCONF = 'todolist.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,11 +130,11 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='38462040892-6buj6lpktf905hqk50g1u0masni9pmv0.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '5VWjTOO4aRGFnNijaUunJIlK'
 
-SOCIAL_AUTH_GITHUB_KEY = ''
-SOCIAL_AUTH_GITHUB_SECRET = ''
+SOCIAL_AUTH_GITHUB_KEY = '071fc22d084b8361423a'
+SOCIAL_AUTH_GITHUB_SECRET = '904bb3eccf63169060c2b6deace09dd9bcd05b1b'
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -148,7 +147,7 @@ BOWER_INSTALLED_APPS = (
 
 )
 
-STATIC_URL = os.path.join(BASE_DIR,'lists/static/')
+STATIC_URL = os.path.join(BASE_DIR, 'lists/static/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'lists/static/')
 LOGIN_URL='/login'
 LOGIN_REDIRECT_URL='/'
