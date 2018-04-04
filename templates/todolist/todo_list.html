@@ -13,11 +13,11 @@
         </thead>
 
         <tbody>
-        {% if not todos %}
+        {% if not object_list %}
             <td colspan="5"> Slacker </td>
         {% endif %}
 
-        {% for todo in todos %}
+        {% for todo in object_list %}
             <tr>
                 <td class="hidden-phone">  {{ todo.text|linebreaksbr }}  </td>
                 <td>  {{ todo.created_date }}  </td>
@@ -30,8 +30,16 @@
                 {% ifequal todo.get_priority_display 'High' %}
                     <td><span class="badge badge-danger">High</span></td>
                 {% endifequal %}
-                <td><a id="edit-button" class="btn btn-primary edit_button" href="{% url 'todo_edit' pk=todo.pk %}">Edit</a></td>
-                <td><a id="delete-button" class="btn btn-danger delete_button" href="{% url 'todo_delete' pk=todo.pk %}">Delete</a></td>
+                <td>
+                    <form action="{% url 'todo_edit' pk=todo.pk %}" method="get">{% csrf_token %}
+                        <input type="submit" id="edit-button" class="btn btn-primary edit_button" value="Edit" />
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'todo_delete' pk=todo.pk %}" method="post">{% csrf_token %}
+                        <input type="submit" id="delete-button" class="btn btn-danger delete_button" value="Delete" />
+                    </form>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

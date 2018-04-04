@@ -1,7 +1,7 @@
 {% extends 'todolist/base.html' %}
 
 {% block content %}
-    {% if  todos %}
+    {% if  object_list %}
         <table id="completed-todo-table" class="table table-striped table-bordered">
 
             <thead>
@@ -15,7 +15,7 @@
             </thead>
 
             <tbody>
-            {% for todo in todos %}
+            {% for todo in object_list %}
                 <tr>
                     <td class="hidden-phone">  {{ todo.text|linebreaksbr }}  </td>
                     <td>  {{ todo.created_date }}  </td>

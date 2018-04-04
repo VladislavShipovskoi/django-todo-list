@@ -1,15 +1,22 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect
 from django.utils import timezone
 from .models import Todo
 from .forms import TodoForm
-from django.views.generic.edit import FormView
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.views.generic.edit import (
+    FormView,
+    CreateView,
+    DeleteView,
+    UpdateView,
+)
+from django.views.generic.list import ListView
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+)
 from django.http import HttpResponseRedirect
 from django.views.generic.base import View
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login,logout
+from django.urls import reverse_lazy
 
 
 class RegisterFormView(FormView):
@@ -40,87 +47,52 @@ class LoginFormView(FormView):
 
 
 class LogoutView(View):
+
     def get(self, request):
         logout(request)
         return HttpResponseRedirect("/")
 
 
-@login_required
-def todo_new(request):
-    if request.method == "POST":
-        form = TodoForm(request.POST)
-        if form.is_valid():
-            todo = form.save(commit=False)
-            todo.author = request.user
-            todo.created_date = timezone.now()
-            todo.save()
-            return redirect('todo_list')
-    else:
-        form = TodoForm()
-    return render(
-        request,
-        'todolist/todo_new_and_edit.html',
-        {'form': form}
-    )
+class TodoCreate(CreateView):
+    form_class = TodoForm
+    template_name = 'todolist/todo_new_and_edit.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.author = self.request.user
+        instance.created_date = timezone.now()
+        instance.save()
+        return redirect('todo_list')
 
 
-@login_required
-def todo_delete(request, pk):
-    todo = get_object_or_404(
-        Todo,
-        pk=pk
-    )
-    todo.delete()
-    return redirect('todo_list')
+class TodoDelete(DeleteView):
+    model = Todo
+    success_url = reverse_lazy('todo_list')
 
 
-@login_required
-def todo_edit(request, pk):
-    todo = get_object_or_404(
-        Todo,
-        pk=pk
-    )
-    if request.method == "POST":
-        form = TodoForm(
-            request.POST,
-            instance=todo
-        )
-        if form.is_valid():
-            todo = form.save(commit=False)
-            todo.author = request.user
-            todo.success = 'success' in request.POST
-            todo.created_date = timezone.now()
-            todo.save()
-            return redirect('todo_list')
-    else:
-        form = TodoForm(instance=todo)
-    return render(
-        request,
-        'todolist/todo_new_and_edit.html',
-        {'form': form}
-    )
+class TodoUpdate(UpdateView):
+    form_class = TodoForm
+    model = Todo
+    template_name = 'todolist/todo_new_and_edit.html'
+    success_url = '/'
 
 
-@login_required
-def todo_list(request):
-    todos = Todo.objects.filter(
-        author=request.user,
-        success=False).order_by('-priority')
-    return render(
-        request,
-        'todolist/todo_list.html',
-        {'todos': todos}
-    )
+class TodoList(ListView):
+    model = Todo
+    template_name = 'todolist/todo_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = context['object_list'].filter(
+            author=self.request.user, success=False).order_by('-priority')
+        return context
 
 
-@login_required
-def todo_completed(request):
-    todos = Todo.objects.filter(
-        author=request.user,
-        success=True
-    ).order_by('completed_date')
-    return render(
-        request,
-        'todolist/todo_completed.html',
-        {'todos': todos}
-    )
+class TodoListComplete(ListView):
+    model = Todo
+    template_name = 'todolist/todo_completed.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = context['object_list'].filter(
+            author=self.request.user, success=True).order_by('completed_date')
