@@ -3,12 +3,12 @@ Extremely simple todo list project on Python,Django and Bootstrap 4
 
 # Features (now)
 ## Integrating Google and GitHub Sign-In
-![1](https://github.com/VladislavShipovskoi/django-todo-list/blob/master/lists/static/img/login.png)
+![1](https://user-images.githubusercontent.com/17500704/38317777-0f4ed3e0-3858-11e8-85ac-48a1c5a234cb.png)
 
 ## Add/Edit/Delete tasks
-![2](https://github.com/VladislavShipovskoi/django-todo-list/blob/master/lists/static/img/main.png)
+![2](https://user-images.githubusercontent.com/17500704/38317839-298c85d6-3858-11e8-8531-9ab4b1df71c1.png)
 ## Viewing completed tasks
-![3](https://github.com/VladislavShipovskoi/django-todo-list/blob/master/lists/static/img/completed.png)
+![3](https://user-images.githubusercontent.com/17500704/38317880-46df49fc-3858-11e8-91cc-1b78b1e0ec59.png)
 
 # Start
 * install packages (```pip install -r requirements.txt```)
