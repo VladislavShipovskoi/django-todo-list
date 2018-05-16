@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from django.contrib import messages
 from django.utils import timezone
 from .models import Todo
 from .forms import TodoForm
@@ -19,6 +20,11 @@ from django.contrib.auth import login,logout
 from django.urls import reverse_lazy
 
 
+REGISTRATION_SUCCESSFUL = "Registration successfully"
+LOGIN_SUCCESSFUL = "Logged in Successfully"
+INVALID_USER_OR_PASSWORD = "Username or Password invalid. Please try again"
+
+
 class RegisterFormView(FormView):
     form_class = UserCreationForm
     success_url = "/login/"
@@ -26,6 +32,11 @@ class RegisterFormView(FormView):
 
     def form_valid(self, form):
         form.save()
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            REGISTRATION_SUCCESSFUL
+        )
         return super(
             RegisterFormView,
             self
@@ -40,10 +51,27 @@ class LoginFormView(FormView):
     def form_valid(self, form):
         self.user = form.get_user()
         login(self.request, self.user)
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            LOGIN_SUCCESSFUL
+        )
+
         return super(
             LoginFormView,
             self
         ).form_valid(form)
+
+    def form_invalid(self, form):
+        response = super(LoginFormView, self).form_invalid(form)
+        messages.error(
+            self.request,
+            INVALID_USER_OR_PASSWORD
+        )
+        return super(
+            LoginFormView,
+            self
+        ).form_invalid(form)
 
 
 class LogoutView(View):

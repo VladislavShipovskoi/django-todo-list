@@ -3,7 +3,14 @@
 {% block content %}
     <div id="sign-in-container" class="container center_signin">
         <form class="form-signin" method="post" id="login-form">{% csrf_token %}
-            <h2 class="form-signin-heading">{{ message }}</h2>
+
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    <a class="close" href="#" data-dismiss="alert">×</a>
+                    <span id="messages">{{ message }}</span>
+                </div>
+            {% endfor %}
+
             <label for="id_username" class="sr-only">Username</label>
             <input type="text" name="username" id="id_username" class="form-control" placeholder="User Name" required autofocus>
             <label for="id_password" class="sr-only">Password</label>
