@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'm_@$5@$ghz-t7n-zjcr1-0fotl4qe%8!g4s^8!$kfx^yu7q3sq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -147,7 +147,8 @@ BOWER_INSTALLED_APPS = (
 
 )
 
-STATIC_URL = os.path.join(BASE_DIR, 'lists/static/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'lists/static/')
-LOGIN_URL='/login'
-LOGIN_REDIRECT_URL='/'
+STATIC_URL = '/static/'
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
