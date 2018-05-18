@@ -16,19 +16,21 @@ from django.contrib.auth.forms import (
 )
 from django.http import HttpResponseRedirect
 from django.views.generic.base import View
-from django.contrib.auth import login,logout
+from django.contrib.auth import login
+from django.contrib.auth.views import logout
 from django.urls import reverse_lazy
 
 
 REGISTRATION_SUCCESSFUL = "Registration successfully"
-LOGIN_SUCCESSFUL = "Logged in Successfully"
+LOGIN_SUCCESSFUL = "Logged in successfully"
+LOGOUT_SUCCESSFUL = "Logged out successfully"
 INVALID_USER_OR_PASSWORD = "Username or Password invalid. Please try again"
 
 
-class RegisterFormView(FormView):
+class RegistrationFormView(FormView):
     form_class = UserCreationForm
     success_url = "/login/"
-    template_name = "todolist/register.html"
+    template_name = "todolist/registration.html"
 
     def form_valid(self, form):
         form.save()
@@ -38,7 +40,7 @@ class RegisterFormView(FormView):
             REGISTRATION_SUCCESSFUL
         )
         return super(
-            RegisterFormView,
+            RegistrationFormView,
             self
         ).form_valid(form)
 
@@ -61,17 +63,6 @@ class LoginFormView(FormView):
             LoginFormView,
             self
         ).form_valid(form)
-
-    def form_invalid(self, form):
-        response = super(LoginFormView, self).form_invalid(form)
-        messages.error(
-            self.request,
-            INVALID_USER_OR_PASSWORD
-        )
-        return super(
-            LoginFormView,
-            self
-        ).form_invalid(form)
 
 
 class LogoutView(View):
