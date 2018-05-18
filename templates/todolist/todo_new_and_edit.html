@@ -7,6 +7,7 @@
             {% csrf_token %}
             {{ form|as_bootstrap }}
             <button type="submit" class="save btn btn-primary" id="save-button" >Save</button>
+            <a id="return-button" class="btn btn-primary" href="/" role="button">Back</a>
         </form>
     </div>
 {% endblock %}

@@ -56,11 +56,12 @@ h1{
     justify-content: center;
 }
 
-#save-button{
+#save-button,
+#return-button{
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    margin-top: 2%;
 }
 
 footer {
