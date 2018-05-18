@@ -21,12 +21,12 @@
         <nav id="todo_nav" class="navbar sticky-top navbar-light bg-faded">
             <a class="navbar-brand" href="/">Todo list</a>
             {% if request.user.is_authenticated %}
-                <ul class="nav navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li><a href="{% url 'todo_completed' %}" class="nav-link" > completed</a></li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-                    <li><a id="username-text" href="" > {{ request.user }} </a></li>
+                    <li><a id="username-text"> {{ request.user }} </a></li>
                 </ul>
 
                 <ul class="navbar-nav ml-auto">

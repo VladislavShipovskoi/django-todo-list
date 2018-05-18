@@ -8,4 +8,4 @@ class TodoForm(forms.ModelForm):
 
     class Meta:
         model = Todo
-        fields = ('text', 'priority')
+        fields = ('text', 'priority', 'success')

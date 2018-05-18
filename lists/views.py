@@ -115,3 +115,4 @@ class TodoListComplete(ListView):
         context = super().get_context_data(**kwargs)
         context['object_list'] = context['object_list'].filter(
             author=self.request.user, success=True).order_by('completed_date')
+        return context
