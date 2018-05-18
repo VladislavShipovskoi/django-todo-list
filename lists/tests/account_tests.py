@@ -21,7 +21,7 @@ class UserRegistrationTestCase(LiveServerTestCase):
     def test_register(self):
         #arrange
         selenium = self.selenium
-        self.selenium.get(self.live_server_url+"/register")
+        self.selenium.get(self.live_server_url+"/registration")
         #act
         selenium.find_element_by_id('id_username').send_keys('newuser')
         selenium.find_element_by_id('id_password1').send_keys('NiGiw3Ch34r')
