@@ -12,11 +12,9 @@ class UserRegistrationTestCase(LiveServerTestCase):
     """
     def setUp(self):
         self.selenium = webdriver.Firefox()
-        super(UserRegistrationTestCase, self).setUp()
 
     def tearDown(self):
-        self.selenium.quit()
-        super(UserRegistrationTestCase, self).tearDown()
+        self.selenium.close()
 
     def test_register(self):
         #arrange
@@ -28,7 +26,7 @@ class UserRegistrationTestCase(LiveServerTestCase):
         selenium.find_element_by_id('id_password2').send_keys('NiGiw3Ch34r')
         selenium.find_element_by_id('sign-up-button').click()
         #assert
-        self.assertEqual(REGISTRATION_SUCCESSFUL, self.selenium.find_element_by_id("messages").text)
+        self.assertEqual(REGISTRATION_SUCCESSFUL, selenium.find_element_by_id("messages").text)
 
 
 class UserLoginTestCase(LiveServerTestCase):
@@ -42,7 +40,7 @@ class UserLoginTestCase(LiveServerTestCase):
         self.user.save()
 
     def tearDown(self):
-        self.selenium.quit()
+        self.selenium.close()
 
     def test_login(self):
         #arrange
@@ -52,4 +50,4 @@ class UserLoginTestCase(LiveServerTestCase):
         selenium.find_element_by_id("id_password").send_keys("NiGiw3Ch34r")
         selenium.find_element_by_id("sign-in-button").click()
         #assert
-        self.assertEqual(self.user.username, self.selenium.find_element_by_id("username-text").text)
+        self.assertEqual(self.user.username, selenium.find_element_by_id("username-text").text)
