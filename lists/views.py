@@ -64,11 +64,27 @@ class LoginFormView(FormView):
             self
         ).form_valid(form)
 
+    def form_invalid(self, form):
+        messages.add_message(
+            self.request,
+            messages.ERROR,
+            INVALID_USER_OR_PASSWORD
+        )
+        return super(
+            LoginFormView,
+            self
+        ).form_invalid(form)
+
 
 class LogoutView(View):
 
     def get(self, request):
         logout(request)
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            LOGOUT_SUCCESSFUL
+        )
         return HttpResponseRedirect("/")
 
 

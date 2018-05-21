@@ -25,11 +25,7 @@
                     <li><a href="{% url 'todo_completed' %}" class="nav-link" > completed</a></li>
                 </ul>
 
-                <ul class="navbar-nav ml-auto">
-                    <li><a id="username-text"> {{ request.user }} </a></li>
-                </ul>
-
-                <ul class="navbar-nav ml-auto">
+                <ul id="logout-button" class="navbar-nav ml-auto">
                     <li><a href="/logout" > Logout </a></li>
                 </ul>
             {% endif %}
@@ -37,6 +33,12 @@
 
         <main role="main" id="todo_main">
             <div class="container">
+                {% for message in messages %}
+                    <div id="messages" class="alert alert-info">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
+                        <span id="message-text">{{ message }}</span>
+                    </div>
+                {% endfor %}
                 <div class="todo_table">
                     {% block content %}
                     {% endblock %}
